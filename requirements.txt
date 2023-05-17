@@ -1,0 +1,11 @@
+pandas
+numpy
+dvc
+mlflow
+psycopg2
+scikit-learn
+jupyterlab
+matplotlib
+argparse
+django
+
