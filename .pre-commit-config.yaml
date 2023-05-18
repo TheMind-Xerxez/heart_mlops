@@ -1,8 +1,0 @@
-repos:
-- repo: https://github.com/TheMind-Xerxez/heart_mlops
-rev: v3.2.0
-hooks:
-- id: trailing-whitespace
-- id: end-of-file-fixer
-- id: check-yaml
-- id: check-added-large-files

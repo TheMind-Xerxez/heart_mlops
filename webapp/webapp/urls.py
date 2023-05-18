@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from heart_app import views_heart
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-]
+    path("admin/", admin.site.urls),
+    path("", views_heart.index, name="heart"),
+    path("heart_result/", views_heart.heart_result, name="result"),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

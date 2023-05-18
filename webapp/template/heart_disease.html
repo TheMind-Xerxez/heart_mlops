@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Heart Disease Prediction</title>
+<style>
+    .button{
+        border:none;
+        color:white;
+        padding:10px 20px;
+        text-align:center;
+        text-decoration:none;
+        display:inline-block;
+        font-size:14px;
+        margin:4px 2px;
+        cursor:pointer;
+    }
+    .button1{background-color: #4caf50;}
+    .button2{background-color: #008cba;}
+</style>
+</head>
+<body style="background-color:powderblue">
+
+<center><h1><span style="color:#FF0000">Heart Disease Prediction App </span></h1>
+    <center><h3>Please Enter the Data</h3></center> <br>
+
+    <form action="{% url 'result' %}">
+        {% csrf_token %}
+
+        <table align="center">
+            <tr><td>Age:<td><input type="text" required name="age"></td></tr>
+            <tr><td>Sex:<td><input type="text" required name="sex"></td></tr>
+            <tr><td>cp:<td><input type="text" required name="cp"></td></tr>
+            <tr><td>trestbps:<td><input type="text" required name="trestbps"></td></tr>
+            <tr><td>chol:<td><input type="text" required name="chol"></td></tr>
+            <tr><td>fbs:<td><input type="text" required name="fbs"></td></tr>
+            <tr><td>restecg:<td><input type="text" required name="restecg"></td></tr>
+            <tr><td>thalach:<td><input type="text" required name="thalach"></td></tr>
+            <tr><td>exang:<td><input type="text" required name="exang"></td></tr>
+            <tr><td>oldpeak:<td><input type="text" required name="oldpeak"></td></tr>
+            <tr><td>slope:<td><input type="text" required name="slope"></td></tr>
+            <tr><td>ca:<td><input type="text" required name="ca"></td></tr>
+            <tr><td>thal:<td><input type="text" required name="thal"></td></tr>
+        </table>
+
+        <center><button type="submit" name="" value="submit" class="button button1">Submit</button></center>
+        <center><button type="reset" name="" value="reset" class="button button1">Reset</button></center>
+    </form>
+
+    {% if answer %}
+
+    <center><h2 style="color:#FF6600"> The Medical Expenses is {{answer}} Dollars</h2>
+    <h3 style="color:#009900">Thanks for using Medical App</h3></h2>
+    </center>
+
+    {% endif %}
+
+</center>
+</body>
+</html>
