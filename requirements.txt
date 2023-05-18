@@ -8,4 +8,5 @@ jupyterlab
 matplotlib
 argparse
 django
+pre-commit
 
