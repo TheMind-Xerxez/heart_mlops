@@ -22,15 +22,15 @@ estimators:
 
 model_dir: models
 
-reports :
-  params: reports/heart_params.json
-  scores: reports/heart_scores.json
+#reports :
+#  params: reports/heart_params.json
+#  scores: reports/heart_scores.json
 
 webapp_model_dir: models/model_heart.joblib
 
-#mlflow_config:
-#  artifacts_dir: artifacts
-#  experiment_name: ElasticNet_Expenses_course5i
-#  run_name: mlops
-#  registered_model_name: ElasticNetMedicalExpenses
-#  remote_server_uri: "127.0.0.1:5000"
+mlflow_config:
+  artifacts_dir: artifacts
+  experiment_name: ElasticNet_Heart_Disease_Prediction
+  run_name: mlops
+  registered_model_name: Heart_Disease_Prediction
+  remote_server_uri: "http://127.0.0.1:5000"
