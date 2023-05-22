@@ -33,7 +33,7 @@ def log_production_model(config_path):
             client.transition_model_version_stage(name=model_name, version=current_version, stage="Staging")
     
     load_model=mlflow.pyfunc.load_model(logged_model)
-    model_path=config["webapp_model_dir"]
+    model_path=config["model_dir"]
     joblib.dump(load_model, model_path)
 
 

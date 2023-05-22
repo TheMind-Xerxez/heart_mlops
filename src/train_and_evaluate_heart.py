@@ -6,6 +6,8 @@ import numpy as np
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import ElasticNet
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import make_classification
 from get_data_heart import read_params
 import argparse
 import joblib
@@ -25,8 +27,9 @@ def train_and_evaluate(config_path):
     random_state = config["base"]["random_state"]
     model_dir = config["model_dir"]
 
-    alpha = config["estimators"]["ElasticNet"]["params"]["alpha"]
-    l1_ratio = config["estimators"]["ElasticNet"]["params"]["l1_ratio"]
+    n_estimators = config["estimators"]["RFC"]["params"]["n_estimators"]
+    criterion = config["estimators"]["RFC"]["params"]["criterion"]
+    max_depth = config["estimators"]["RFC"]["params"]["max_depth"]
 
     target = [config["base"]["target_col"]]
 
@@ -38,21 +41,21 @@ def train_and_evaluate(config_path):
 
     train_x = train.drop(target, axis=1)
     test_x = test.drop(target, axis=1)
-
-    lr = ElasticNet(
-        alpha=alpha, 
-        l1_ratio=l1_ratio, 
+    lr = RandomForestClassifier(
+        n_estimators=n_estimators, 
+        criterion=criterion,
+        max_depth=max_depth,
         random_state=random_state)
     lr.fit(train_x, train_y)
 
     predicted_qualities = lr.predict(test_x)
     
-    (rmse, mae, r2) = eval_metrics(test_y, predicted_qualities)
+    (n_estimators, criterion, max_depth) = eval_metrics(test_y, predicted_qualities)
 
-    print("Elasticnet model (alpha=%f, l1_ratio=%f):" % (alpha, l1_ratio))
-    print("  RMSE: %s" % rmse)
-    print("  MAE: %s" % mae)
-    print("  R2: %s" % r2)
+    print("Random Forest model (n_estimators=%f, criterion=%f, max_depth=%f):" % (n_estimators, criterion, max_depth))
+    print("  n_estimators: %s" % n_estimators)
+    print("  criterion: %s" % criterion)
+    print("  max_depth: %s" % max_depth)
 
 #####################################################
     scores_file = config["reports"]["scores"]
@@ -60,16 +63,17 @@ def train_and_evaluate(config_path):
 
     with open(scores_file, "w") as f:
         scores = {
-            "rmse": rmse,
-            "mae": mae,
-            "r2": r2
+            "n_estimators": n_estimators,
+            "criterion": criterion,
+            "max_depth": max_depth
         }
         json.dump(scores, f, indent=4)
 
     with open(params_file, "w") as f:
         params = {
-            "alpha": alpha,
-            "l1_ratio": l1_ratio,
+            "n_estimators": n_estimators,
+            "criterion": criterion,
+            "max_depth": max_depth
         }
         json.dump(params, f, indent=4)
 #####################################################
