@@ -19,8 +19,8 @@ def create_fold(config, img=None):
         print("train and test folders are already exists...!")
         print("I am Skipping it...!")
     else:
-        os.mkdir(dirr+'/'+'train')
-        os.mkdir(dirr+'/'+'test')
+        os.mkdir(dirr+'/'+'Training')
+        os.mkdir(dirr+'/'+'Testing')
         for i in range(cla):
             os.makedirs(os.path.join(dirr+'/'+'Training','class_'+str(i)))
             os.makedirs(os.path.join(dirr+'/'+'Testing','class_'+str(i)))

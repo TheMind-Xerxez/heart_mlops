@@ -9,4 +9,8 @@ matplotlib
 argparse
 django
 pre-commit
+seaborn
+keras
+tensorflow
+Keras-Preprocessing
 

@@ -8,7 +8,7 @@ load_data:
   num_classes: 4
   raw_data: source_data
   preprocessed_data: data/processed
-  full_Path: deep_learning/Data_Set
+  full_Path: deep_learning/source_data
 
 train_split:
   split_ratio: 80
@@ -16,14 +16,14 @@ train_split:
 model:
   name: VGG19
   trainable: True
-  train_path: data/processed/train
-  test_path: data/processed/test
+  train_path: data/processed/Training
+  test_path: data/processed/Testing
   image_size: [255,255]
   loss: 'categorical_crossentropy'
   optimizer: 'adam'
   metrics: ['accuracy']
   epochs: 1
-  sav_dir: saved_models/trained.h5
+  sav_dir: models/trained_mri.h5
 
 img_augment:
   rescale: 1./255,
