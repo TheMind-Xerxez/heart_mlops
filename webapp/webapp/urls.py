@@ -19,9 +19,11 @@ from django.urls import path
 from heart_app import views_heart
 from django.conf.urls.static import static
 from django.conf import settings
+from mri_app import views_mri
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views_heart.index, name="heart"),
     path("heart_result/", views_heart.heart_result, name="result"),
+    path("heart_result/", views_mri.index_mri, name="result"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
