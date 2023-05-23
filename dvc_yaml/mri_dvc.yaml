@@ -1,19 +1,19 @@
 stages:
   load_data:
-    cmd: python src/split.py --config=params.yaml
+    cmd: python src/mri/split_mri.py --config=mri_params.yaml
     deps:
-      - src/get_data.py
-      - src/split.py
-      - Data_Set/
+      - src/mri/get_data_mri.py
+      - src/mri/split_mri.py
+      - source_data/
     outs:
       - data/processed:
           persist: true
 
   train_model:
-    cmd: python src/model_train.py --config=params.yaml
+    cmd: python src/mri/model_train_mri.py --config=mri_params.yaml
     deps:
-      - src/get_data.py
-      - src/model_train.py
+      - src/mri/get_data_mri.py
+      - src/mri/model_train_mri.py
     outs:
       - saved_models:
           persist: true
@@ -21,7 +21,7 @@ stages:
           persist: true
 
   evaluate:
-    cmd: python src/evaluate.py --config=params.yaml
+    cmd: python src/mri/evaluate.py --config=mri_params.yaml
     deps:
-      - src/get_data.py
-      - src/evaluate.py
+      - src/mri/get_data.py
+      - src/mri/evaluate.py

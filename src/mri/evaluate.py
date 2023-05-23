@@ -30,13 +30,13 @@ def m_evaluate(config_file):
     y_pred = np.argmax(Y_pred, axis=1)
     print("Confusion Matrix")
     sns.heatmap(confusion_matrix(test_set.classes,y_pred),annot=True)
-    plt.xlabel('Actual vlaues,0:Bulbasaur, 1:Charmander, 2: Squirtle,3:Tauros')
-    plt.ylabel('Predicted Value,0:Bulbasaur, 1:Charmander, 2: Squirtle,3:Tauros')
+    plt.xlabel('Actual vlaues,0:glioma_tumor, 1:meningioma_tumor, 2: no_tumor,3:pituitary_tumor')
+    plt.ylabel('Predicted Value,0:glioma_tumor, 1:meningioma_tumor, 2: no_tumor,3:pituitary_tumor')
     plt.savefig('reports/Confusion_Matrix')
     #plt.show()
 
     print("Classification Report")
-    target_names = ['Bulbasaur','Charmander','Squirtle','Tauros']
+    target_names = ['glioma_tumor','meningioma_tumor','no_tumor','pituitary_tumor']
     df =pd.DataFrame(classification_report(test_set.classes, y_pred, target_names=target_names, output_dict=True)).T
     df['support']=df.support.apply(int)
     df.style.background_gradient(cmap='viridis',subset=pd.IndexSlice['0':'9','f1-score'])

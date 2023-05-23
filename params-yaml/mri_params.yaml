@@ -22,7 +22,7 @@ model:
   loss: 'categorical_crossentropy'
   optimizer: 'adam'
   metrics: ['accuracy']
-  epochs: 1
+  epochs: 50
   sav_dir: models/trained_mri.h5
 
 img_augment:
